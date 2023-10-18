@@ -19,7 +19,7 @@ files=[];
   }
   private apiUrl = 'internal-api-lb-1340278212.us-east-2.elb.amazonaws.com';
   getFiles(){
-    this.http.get<any>(`${this.apiUrl}"/docs#/default/list_files_list_files_get"`).subscribe((response : any)=>{
+    this.http.get<any>(`${this.apiUrl}"/list_files"`).subscribe((response : any)=>{
       // this.files = response
       console.log(response);
       
