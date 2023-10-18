@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    position: relative;
+    background: #EAEBEF;
+    font-family: 'Poppins', sans-serif;
+}
+
+.body-contenido {
+    width: calc(86% - 5rem);
+    height: 100vh;
+    margin-left: 17rem;
+    z-index: 0;
+    position: fixed;
+    top: 0;
+    transition: all 0.5s ease;
+    background: #f4f7fa;
+    padding: 3rem;
+    overflow: auto;
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    border-radius: .5rem;
+    background-color: #fff;
+    margin: 2.25rem 100px -0.75rem 62px;
+    box-shadow: 0 0.25rem 0.5rem #e6edef;
+    color: #495057;
+  }
+  
+.card .card-head {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #edf1f7;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .card .card-body {
+    padding: 1rem 1.5rem; 
+}
+.body-navbar {
+    width: 250px;
+    background: #fff;
+    z-index: 1;
+    position: fixed;
+}
+
+.list-navbar {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 0 16px 16px 0;
+
+    .list-item-navbar {
+        list-style-type: none;
+        width: 100%;
+        text-align: center;
+        overflow: hidden;
+
+        .list-item-navbar--click {
+            cursor: pointer;
+        }
+
+        .list-button-navbar {
+            display: flex;
+            align-items: center;
+            gap: 1em;
+            width: 70%;
+            margin: 0 auto;
+
+        }
+        .arrow .list-arrow{
+            transform: rotate(270deg);
+        }
+        .list-arrow {
+            margin-left: auto;
+            transition: transform .3s;
+        }
+    }
+
+    .navbar-link {
+       cursor: pointer;
+        color: #303440;
+        display: block;
+        padding: 15px 0;
+        text-decoration: none;
+    }
+    .nav-link-inside{
+        border-radius: 6px;
+        padding-left: 20px;
+        text-align: left;
+    }
+    .nav-link-inside:hover {
+        background: #F6F8FA;
+    }
+
+    .list-show{
+        width: 80%;
+        margin-left: auto;
+        border-left: 2px solid #303440;
+        list-style: none;
+        transition: height .4s;
+        height: 0;
+    }
+
+   
+}
+
+.logo-navbar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.linea-divisora {
+    border: 1px solid hsla(0, 0%, 60%, .32);
+    margin: 0 32px 0 24px;
+}

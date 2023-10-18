@@ -1,0 +1,35 @@
+.file-table {
+    width: 90%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .file-table td {
+
+    text-align: end;
+  }
+  
+  .icon-column {
+    width: 50px;
+    font-size: 3rem;
+  }
+  
+//   .info-column {
+//     width: 200px;
+//     text-align: left;
+//     padding: 20px 10px;
+//     line-height: 1.5; 
+//   }
+  
+  .download-column a {
+    text-decoration: none;
+    background-color: #4caf50;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+  }
+  
+  .download-column a:hover {
+    background-color: #45a049;
+  }
+  

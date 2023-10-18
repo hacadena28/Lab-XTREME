@@ -1,0 +1,28 @@
+<nav class="body-navbar">
+  <div class="logo-navbar">
+      <div class="imagen-navbar">
+          <img src="" alt="" class="logo-img-navbar">
+      </div>
+      <div class="titulo-navbar">
+          <h2>XTREMELAB</h2>
+      </div>
+  </div>
+  <div class="linea-divisora"></div>
+  <ul class="list-navbar">
+      <li class="list-item-navbar list-item-navbar--click">
+          <div class="list-button-navbar list-button-navbar--click">
+              <a class="navbar-link" routerLink="/Home">Home</a>
+              <!-- <i class="fa-solid fa-chevron-down list-arrow"></i> -->
+          </div>
+      </li>
+      <li class="list-item-navbar">
+          <div class="list-button-navbar">
+              <a class="navbar-link"  routerLink="/File upload">File upload</a>
+          </div>
+      </li>
+  </ul>
+</nav>
+
+<div class="body-contenido">
+  <router-outlet></router-outlet>
+</div>
