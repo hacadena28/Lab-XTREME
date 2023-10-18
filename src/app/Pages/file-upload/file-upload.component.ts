@@ -27,7 +27,7 @@ constructor(private http: HttpClient) {}
     debugger
 
     if (this.fileInfo) {
-      this.http.post<any>(`${this.apiUrl}/upload_file`, this.fileInfo).subscribe(
+      this.http.post<any>(`${this.apiUrl}/docs#/default/upload_file_upload_file_post`, this.fileInfo).subscribe(
         map(response => {
           return response;
         })
