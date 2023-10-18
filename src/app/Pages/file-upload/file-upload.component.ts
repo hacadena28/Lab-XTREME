@@ -21,13 +21,13 @@ constructor(private http: HttpClient) {}
     this.fileInfo.icon = this.getIconForFileType(this.getFileExtension(this.fileInfo.name));
   }
 
-
+  private apiUrl = 'internal-api-lb-1340278212.us-east-2.elb.amazonaws.com';
 
   onSubmit() {
     debugger
 
     if (this.fileInfo) {
-      this.http.post<any>('192.168.10.89/upload_file', this.fileInfo).subscribe(
+      this.http.post<any>(`${this.apiUrl}/upload_file`, this.fileInfo).subscribe(
         map(response => {
           return response;
         })
