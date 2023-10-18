@@ -19,7 +19,7 @@ files=[];
   }
 
   getFiles(){
-    this.http.get<any>('192.168.10.89/list_files').subscribe((response : any)=>{
+    this.http.get<any>('http://192.168.10.89/list_files').subscribe((response : any)=>{
       // this.files = response
       console.log(response);
       

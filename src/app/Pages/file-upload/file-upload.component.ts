@@ -24,10 +24,9 @@ constructor(private http: HttpClient) {}
 
 
   onSubmit() {
-    debugger
 
     if (this.fileInfo) {
-      this.http.post<any>('192.168.10.89/upload_file', this.fileInfo).subscribe(
+      this.http.post<any>('http://192.168.10.89/upload_file', this.fileInfo).subscribe(
         map(response => {
           return response;
         })
