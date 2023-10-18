@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { tiposDeArchivo } from '../model/tipeFile';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-file-upload',
@@ -9,23 +13,26 @@ import { tiposDeArchivo } from '../model/tipeFile';
 export class FileUploadComponent {
   fileInfo: any;
 
+constructor(private http: HttpClient) {}
+
+
   onFileSelected(event: any) {
     this.fileInfo = event.target.files[0];
     this.fileInfo.icon = this.getIconForFileType(this.getFileExtension(this.fileInfo.name));
   }
 
-  onFileUpload() {
-    if (!this.fileInfo) {
-      this.onSubmit()
-    }
-  }
+
 
   onSubmit() {
-    // Aquí puedes enviar this.fileInfo al servidor usando un servicio HTTP
-    // Por ejemplo, usando Angular's HttpClient:
-    // this.http.post('URL_DEL_SERVIDOR', this.fileInfo).subscribe(response => {
-    //   console.log('Archivo enviado con éxito', response);
-    // });
+    debugger
+
+    if (this.fileInfo) {
+      this.http.post<any>('192.168.10.89/upload_file', this.fileInfo).subscribe(
+        map(response => {
+          return response;
+        })
+      );
+    }
     alert('Archivo enviado con éxito');
   }
   getFileExtension(filename: string): string {

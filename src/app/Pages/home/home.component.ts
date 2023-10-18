@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,22 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
   selectedFile: File | null = null;
+files=[];
+  constructor(private http: HttpClient) {
+    this.getFiles();
+  }
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
+  }
+
+  getFiles(){
+    this.http.get<any>('192.168.10.89/list_files').subscribe((response : any)=>{
+      // this.files = response
+      console.log(response);
+      
+
+    });
   }
 
   onFileUpload(event: any) {
