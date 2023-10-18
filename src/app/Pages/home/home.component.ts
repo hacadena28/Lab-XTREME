@@ -17,9 +17,8 @@ files=[];
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
   }
-  private apiUrl = 'internal-api-lb-1340278212.us-east-2.elb.amazonaws.com';
   getFiles(){
-    this.http.get<any>(`${this.apiUrl}"/list_files"`).subscribe((response : any)=>{
+    this.http.get<any>("http://internal-api-lb-1340278212.us-east-2.elb.amazonaws.com/list_files").subscribe((response : any)=>{
       // this.files = response
       console.log(response);
       
