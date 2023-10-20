@@ -18,7 +18,7 @@ files=[];
     this.selectedFile = event.target.files[0];
   }
   getFiles(){
-    this.http.get<any>("http://192.168.10.89/list_files").subscribe((response : any)=>{
+    this.http.get<any>("http://internal-api-lb-1340278212.us-east-2.elb.amazonaws.com/list_files").subscribe((response : any)=>{
       // this.files = response
       console.log(response);
       
