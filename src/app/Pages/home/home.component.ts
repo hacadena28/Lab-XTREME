@@ -1,45 +1,60 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+export interface FileUpload{
+  "files": []
+}
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
+
 export class HomeComponent {
   selectedFile: File | null = null;
-files=[];
-  constructor(private http: HttpClient) {
-    this.getFiles();
-  }
+  fileUpload: FileUpload = {
+    files: []
+  };
+  
 
+  constructor(private http: HttpClient) {
+    
+  }
+  ngOnInit() {
+    this.http.get<FileUpload>('http://api-lb-778518774.us-east-2.elb.amazonaws.com/list_files')
+      .subscribe(data => {
+        this.fileUpload = data;
+        console.log(data);
+      });
+  }
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
   }
-  getFiles(){
-    this.http.get<any>("http://api-lb-778518774.us-east-2.elb.amazonaws.com/list_files").subscribe((response : any)=>{
-      // this.files = response
-      console.log(response);
-      
 
+  downloadFile(fileName: string){
+    debugger
+    const headers = new HttpHeaders({
+      'Accept': 'application/octet-stream'
     });
+
+   this.http.get(`http://api-lb-778518774.us-east-2.elb.amazonaws.com/download/${fileName}`, {
+      headers: headers,
+      responseType: 'blob'
+    }).subscribe(
+      (data: Blob) => {
+        const downloadUrl = window.URL.createObjectURL(data);
+        const link = document.createElement('a');
+        link.href = downloadUrl;
+        link.download = fileName;
+        link.click();
+      },
+      error => {
+        console.error('Error al descargar el archivo:', error);
+      }
+    );
   }
-
-  onFileUpload(event: any) {
-    event.preventDefault();
-
-    if (this.selectedFile) {
-      const formData: FormData = new FormData();
-      formData.append('file', this.selectedFile, this.selectedFile.name);
-
-      // Aquí puedes enviar formData al servidor usando un servicio HTTP
-      // Ejemplo de cómo hacer una solicitud HTTP POST con formData:
-      // this.http.post('URL_DEL_SERVIDOR', formData).subscribe(response => {
-      //   console.log('Archivo subido con éxito', response);
-      // });
-    } else {
-      console.log('Por favor selecciona un archivo antes de subirlo.');
-    }
+  getFileExtension(fileName: string): string {
+    const parts = fileName.split('.');
+    return parts[parts.length - 1];
   }
 }

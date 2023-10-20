@@ -1,18 +1,17 @@
 <div class="card ">
     <div class="form-container container">
-        <form >
-            <table class="file-table">
-                <tr *ngFor="let file of files">
-                    <td class="icon-column"><i class="fa-solid fa-file-pdf"></i></td>
-                    <td class="info-column">
-                        <span class="file-name">Nombre del Archivo</span><br>
-                        <span class="file-details">Tamaño: 3 MB<br>Fecha de Creación: 10-17-2023</span>
-                    </td>
-                    <td class="download-column">
-                        <a download>Descargar</a>
-                    </td>
-                </tr>
-            </table>
-        </form>
-    </div>
+
+        <table class="file-table">
+            <tr *ngFor="let file of fileUpload.files; index as i">
+                <td class="icon-column"><i class="fa-solid fa-file-pdf"></i></td>
+                <td class="info-column">
+                    <span class="file-name">{{getFileExtension(file)}}</span><br>
+                </td>
+                <td class="download-column">
+                    <button (click)="downloadFile(file)" download>Descargar</button>
+                </td>
+            </tr>
+        </table>
+
+    </div>
 </div>

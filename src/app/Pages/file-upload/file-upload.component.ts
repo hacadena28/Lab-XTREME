@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { tiposDeArchivo } from '../model/tipeFile';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-
 
 @Component({
   selector: 'app-file-upload',
@@ -13,26 +10,29 @@ import { map } from 'rxjs/operators';
 export class FileUploadComponent {
   fileInfo: any;
 
-constructor(private http: HttpClient) {}
-
-
+  constructor(private http: HttpClient) {
+    
+  }
   onFileSelected(event: any) {
     this.fileInfo = event.target.files[0];
     this.fileInfo.icon = this.getIconForFileType(this.getFileExtension(this.fileInfo.name));
   }
 
-
-  onSubmit() {
-
+  onFileUpload() {
     if (this.fileInfo) {
-      this.http.post<any>("http://api-lb-778518774.us-east-2.elb.amazonaws.com/upload_file", this.fileInfo).subscribe(
-        map(response => {
-          return response;
-        })
-      );
+      debugger
+      if (this.fileInfo) {
+        const formData: FormData = new FormData();
+        formData.append('file', this.fileInfo, this.fileInfo.name);
+        console.log(formData)
+        this.http.post('http://api-lb-778518774.us-east-2.elb.amazonaws.com/upload_file', formData).subscribe(p=> console.log(p));
+      } else {
+        console.log('Por favor selecciona un archivo antes de subirlo.');
+      }
     }
-    alert('Archivo enviado con éxito');
   }
+
+  
   getFileExtension(filename: string): string {
     return filename.split('.').pop()?.toLowerCase() || '';
   }
