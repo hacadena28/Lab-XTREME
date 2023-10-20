@@ -25,7 +25,7 @@ constructor(private http: HttpClient) {}
   onSubmit() {
 
     if (this.fileInfo) {
-      this.http.post<any>("http://internal-api-lb-1340278212.us-east-2.elb.amazonaws.com/upload_file", this.fileInfo).subscribe(
+      this.http.post<any>("http://api-lb-778518774.us-east-2.elb.amazonaws.com/upload_file", this.fileInfo).subscribe(
         map(response => {
           return response;
         })
