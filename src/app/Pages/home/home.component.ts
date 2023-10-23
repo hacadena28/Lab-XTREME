@@ -57,4 +57,8 @@ export class HomeComponent {
     const parts = fileName.split('.');
     return parts[parts.length - 1];
   }
+  getFileName(fileName: string): string {
+    const parts = fileName.split('.');
+    return parts[0];
+  }
 }

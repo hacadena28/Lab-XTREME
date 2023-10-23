@@ -2,8 +2,11 @@
     <div class="form-container container">
 
         <table class="file-table">
+           
             <tr *ngFor="let file of fileUpload.files; index as i">
                 <td class="icon-column"><i class="fa-solid fa-file-pdf"></i></td>
+                <td class="info-column">{{getFileName(file)}}</td>
+                
                 <td class="info-column">
                     <span class="file-name">{{getFileExtension(file)}}</span><br>
                 </td>
